@@ -3,22 +3,15 @@ import numpy as np
 from segmentation import get_yolov5, get_image_from_bytes
 from easyocr import Reader
 import time
-import pandas as pd
-import io
-from PIL import Image
-
-
 
 cap = cv2.VideoCapture(0)
 
 cap.set(3, 416)
 cap.set(4, 416)
 model = get_yolov5()
-reader = Reader(['en'], gpu = True)
+#reader = Reader(['en'], gpu = True)
 
-  
 dim = (416,416)
-
 
 def drawRectangles(image, dfResults):
     for index, row in dfResults.iterrows():
@@ -55,6 +48,7 @@ try:
                     im0 = screen
                 
                     cropped_img = im0[y1:y2, x1:x2]
+                    cv2.imwrite("mmm.png", cropped_img)
                     grayImage = cv2.cvtColor(cropped_img, cv2.COLOR_BGR2GRAY)
 
 
@@ -66,7 +60,6 @@ try:
                     i= i+1
 except:
     print("Video has ended.")
-
     #cv2.imshow("mmm", )
     #cv2.imwrite("mmm.png", cropped_img)
     #result = model(frame, size = 416)
