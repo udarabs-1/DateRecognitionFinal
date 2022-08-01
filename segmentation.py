@@ -5,7 +5,7 @@ import io
 def get_yolov5():
     # local best.pt
     model = torch.hub.load('./yolov5', 'custom', force_reload = True, path='./model/dateDetection2_400.pt', source='local')  # local repo
-    model.conf = 0.1
+    model.conf = 0.4
     return model
 
 def get_image_from_bytes(binary_image, max_size=1024):
